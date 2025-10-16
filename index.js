@@ -42,7 +42,7 @@ app.get('/hello', (_req, res) => res.json({ ok: true }));
 
 
 app.use(errorHandler);
-cron.schedule("*/1 * * * *", finalizeExpiredContests); // every 10 minutes
+cron.schedule("*/10 * * * *", finalizeExpiredContests); // every 10 minutes
 
 
 const PORT = process.env.PORT || 4000;

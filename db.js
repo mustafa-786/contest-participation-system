@@ -10,5 +10,7 @@ connectionLimit: 10,
 queueLimit: 0
 });
 
+pool.getConnection().then(()=>console.log('Db Connected')).catch((e)=>console.log(e))
+
 
 module.exports = pool;

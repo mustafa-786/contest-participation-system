@@ -7,8 +7,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "migrate": "db-migrate up",
-    "migrate:down": "db-migrate down",
-   "seed:roles": "node seed-roles.js"
+    "migrate:down": "db-migrate down"
   },
   "keywords": [],
   "author": "",
