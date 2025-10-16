@@ -13,7 +13,6 @@ const contestRoutes = require('./routes/contests');
 const participationRoutes = require('./routes/participation');
 const leaderboardRoutes = require('./routes/leaderboard');
 const userRoutes = require('./routes/user');
-const adminRoutes = require('./routes/admin');
 const { errorHandler } = require('./middleware/errorHandler');
 
 
@@ -37,8 +36,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/contests', contestRoutes);
 app.use('/api/participation', participationRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
-app.use('/api/user', userRoutes);
-app.use('/api/admin',adminRoutes)
+app.use('/api/users', userRoutes);
 
 app.get('/hello', (_req, res) => res.json({ ok: true }));
 

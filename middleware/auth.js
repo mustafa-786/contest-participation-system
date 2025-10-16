@@ -34,7 +34,7 @@ const auth = async (req, res, next) => {
   const token = authHeader.split(' ')[1];
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
-    const [rows] = await pool.query('SELECT u.id, u.name, u.email, r.name as role FROM users u JOIN roles r ON u.role_id = r.id WHERE u.id = ?', [payload.id]);
+    const [rows] = await pool.query('SELECT u.id, u.name, u.email, r.name as role FROM users u JOIN roles r ON u.roleId = r.id WHERE u.id = ?', [payload.id]);
     if (!rows[0]) return res.status(401).json({ error: 'Unauthorized' });
     req.user = rows[0];
     next();

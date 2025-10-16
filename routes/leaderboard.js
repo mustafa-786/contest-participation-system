@@ -16,4 +16,5 @@ ORDER BY s.score DESC, s.submittedAt ASC LIMIT ?`,
     next(err);
   }
 });
+
 module.exports = router;

@@ -26,7 +26,7 @@ router.get("/", async (req, res, next) => {
 });
 
 // Create contest (admin/vip)
-router.post("/", auth, permit("admin", "vip"), async (req, res, next) => {
+router.post("/", auth, permit("Admin", "VIP"), async (req, res, next) => {
   try {
     const {
       name,
@@ -115,41 +115,3 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 module.exports = router;
-
-
-// const express = require('express');
-// const pool = require('../db');
-// const { auth, permit } = require('../middleware/auth');
-// const router = express.Router();
-
-// // Get all contests (guests can view)
-// router.get('/', async (req, res, next) => {
-//   try {
-//     const [contests] = await pool.query('SELECT * FROM contests ORDER BY start_at DESC');
-//     res.json({ data: contests });
-//   } catch (err) { next(err); }
-// });
-
-// // Create contest (admin/vip)
-// router.post('/', auth, permit('admin','vip'), async (req, res, next) => {
-//   try {
-//     const { name, description, access_level, start_at, end_at, prize_title, prize_description, prize_quantity, questions } = req.body;
-
-//     const [result] = await pool.query('INSERT INTO contests (name,description,access_level,start_at,end_at,prize_title,prize_description,prize_quantity,created_by) VALUES (?,?,?,?,?,?,?,?,?)',[name,description,access_level,start_at,end_at,prize_title,prize_description,prize_quantity,req.user.id]);
-//     const contestId = result.insertId;
-
-//     // Insert questions and options
-//     for (const q of questions) {
-//       const [qResult] = await pool.query('INSERT INTO questions (contest_id,text,type,points) VALUES (?,?,?,?)', [contestId,q.text,q.type,q.points || 1]);
-//       const questionId = qResult.insertId;
-//       for (const opt of q.options) {
-//         await pool.query('INSERT INTO options (question_id,option_id,text,is_correct) VALUES (?,?,?,?)', [questionId,opt.id,opt.text,q.correctOptions.includes(opt.id) ? 1 : 0]);
-//       }
-//     }
-
-//     res.json({ message: 'Contest created', contestId });
-//   } catch (err) { next(err); }
-// });
-
-
-// module.exports = router;
